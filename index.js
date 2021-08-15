@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
        //log the message in console
 
        console.log("Message: "+messageContent)
-       
+
       //create a message object
 
       let  message = {"message":messageContent}
@@ -43,4 +43,3 @@ io.on('connection', (socket) => {
       })
 
 });
-})
