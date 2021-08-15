@@ -26,10 +26,21 @@ io.on('connection', (socket) => {
         io.emit('counter', count);
     })*/
 
-    socket.on('Chat' , function (data) {
-    console.log('Chat message: ' + data);
+    socket.on('messagedetection', (messageContent) => {
 
-    socket.emit('Chat',data);
+       //log the message in console
+
+       console.log("Message: "+messageContent)
+       
+      //create a message object
+
+      let  message = {"message":messageContent}
+
+       // send the message to all users including the sender  using io.emit()
+
+      io.emit('message', message )
+
+      })
 
 });
 })
