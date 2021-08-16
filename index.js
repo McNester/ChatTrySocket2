@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
 
        // send the message to all users including the sender  using io.emit()
 
-      io.emit('message', message )
+      socket.broadcast.emit('message', message )
 
       })
 
