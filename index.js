@@ -11,7 +11,7 @@ app.use(express.static('public')); //show static files in 'public' directory
 console.log('Server is running');
 const io = socket(server);
 
-//var count = 0;
+
 var message = "";
 
 
@@ -20,11 +20,28 @@ io.on('connection', (socket) => {
 
     console.log("New socket connection: " + socket.id)
 
-    /*socket.on('counter', () => {
-        count++;
-        console.log(count)
-        io.emit('counter', count);
+    /*socket.on('join', (userName) => {
+
+       //log the message in console
+
+       console.log(userName + "has connected!")
+
+      //create a message object
+
+      let  jsonUserName = {"userName":userName}
+
+       // send the message to all users including the sender  using io.emit()
+
+      io.emit('newUser', jsonUserName)
+
+
+      let  message = {"message":"Welcome to chatroom!!"}
+
+      socket.emit('message',message)
+
     })*/
+
+
 
     socket.on('messagedetection', (messageContent) => {
 
