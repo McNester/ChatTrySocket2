@@ -20,15 +20,15 @@ io.on('connection', (socket) => {
 
     console.log("New socket connection: " + socket.id)
 
-    socket.on('messagedetection', (messageContent,userName,roomName) => {
+    socket.on('messagedetection', (messageContent,roomName) => {
 
        //log the message in console
 
-       console.log("Message from "+userName+": "+messageContent)
+       console.log("Message: "+messageContent)
 
       //create a message object
 
-      let  message = {"message":messageContent, "sender":userName}
+      let  message = {"message":messageContent}
 
       // send the message to all users including the sender  using io.emit()
       io.to(roomName).emit('message', message )
@@ -36,13 +36,13 @@ io.on('connection', (socket) => {
 
       })
 
-      socket.on('joinRoom', (roomName,userName) =>{
+      socket.on('joinRoom', (roomName) =>{
 
         socket.join(roomName);
 
-        console.log(userName + " has joined "+roomName + "!")
+        console.log(" New user has joined "+roomName + "!")
 
-        let  message = {"message": userName+" has joined!"}
+        let  message = {"message": " New user has joined "}
 
         io.to(roomName).emit('newUser', message )
 
