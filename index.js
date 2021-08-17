@@ -12,7 +12,7 @@ console.log('Server is running');
 const io = socket(server);
 
 
-var message = "";
+
 
 
 //Socket.io Connection------------------
@@ -20,42 +20,31 @@ io.on('connection', (socket) => {
 
     console.log("New socket connection: " + socket.id)
 
-    /*socket.on('join', (userName) => {
+    socket.on('messagedetection', (messageContent,userName,roomName) => {
 
        //log the message in console
 
-       console.log(userName + "has connected!")
+       console.log("Message from "+userName+": "+messageContent)
 
       //create a message object
 
-      let  jsonUserName = {"userName":userName}
+      let  message = {"message":messageContent, "sender":userName}
 
-       // send the message to all users including the sender  using io.emit()
-
-      io.emit('newUser', jsonUserName)
-
-
-      let  message = {"message":"Welcome to chatroom!!"}
-
-      socket.emit('message',message)
-
-    })*/
+      // send the message to all users including the sender  using io.emit()
+      io.to(roomName).emit('message', message )
 
 
+      })
 
-    socket.on('messagedetection', (messageContent) => {
+      socket.on('joinRoom', (roomName,userName) =>{
 
-       //log the message in console
+        socket.join(roomName);
 
-       console.log("Message: "+messageContent)
+        console.log(userName + " has joined "+roomName + "!")
 
-      //create a message object
+        let  message = {"message": userName+" has joined!"}
 
-      let  message = {"message":messageContent}
-
-       // send the message to all users including the sender  using io.emit()
-
-      socket.broadcast.emit('message', message )
+        io.to(roomName).emit('newUser', message )
 
       })
 
