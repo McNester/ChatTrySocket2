@@ -15,5 +15,5 @@ const io = socket(server);
 //it works!
 // Socket.io Connection------------------
 io.on('connection',(socket)=>{
-  console.log("New socket conntection: " + socket.id)
+  console.log("New socket conntection--p " + socket.id)
 });
