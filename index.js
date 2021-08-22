@@ -11,9 +11,15 @@ app.use(express.static('public')); //show static files in 'public' directory
 console.log('Server is running');
 const io = socket(server);
 
-
+//pls work!
 
 // Socket.io Connection------------------
 io.on('connection',(socket)=>{
   console.log("New socket conntection: " + socket.id)
-});
+
+  socket.on("groupDetection",(groupStr)=>{
+    console.log("New group has added " + " ");
+    let groupName = {"groupName": groupStr}
+    io.emit("GroupName",  groupName);
+  })
+})
