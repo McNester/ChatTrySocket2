@@ -20,6 +20,6 @@ io.on('connection',(socket)=>{
   socket.on("roomDetection",(roomStr)=>{
     console.log("The new room has been created");
     let roomName = {"roomName": roomStr}
-    socket.emit("newRoom",  roomName);
+    socket.broadcast.emit("newRoom",  roomName);
   })
 })
