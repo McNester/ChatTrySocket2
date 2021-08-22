@@ -10,10 +10,10 @@ const server = app.listen(PORT); //tells to host server on 5000
 app.use(express.static('public')); //show static files in 'public' directory
 console.log('Server is running');
 const io = socket(server);
-
+//try2
 
 //it works!
 // Socket.io Connection------------------
 io.on('connection',(socket)=>{
-  console.log("New socket conntection---- " + socket.id)
+  console.log("New socket conntection- " + socket.id)
 });
