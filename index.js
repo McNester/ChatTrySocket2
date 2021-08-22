@@ -17,9 +17,9 @@ const io = socket(server);
 io.on('connection',(socket)=>{
   console.log("New socket conntection: " + socket.id)
 
-  socket.on("groupDetection",(groupStr)=>{
-    console.log("New group has added " + " ");
-    let groupName = {"groupName": groupStr}
-    io.emit("GroupName",  groupName);
+  socket.on("roomDetection",(roomStr)=>{
+    console.log("The new room has been created");
+    let roomName = {"roomName": roomStr}
+    io.emit("newRoom",  roomName);
   })
 })
