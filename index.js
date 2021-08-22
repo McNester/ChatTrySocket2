@@ -11,6 +11,8 @@ app.use(express.static('public')); //show static files in 'public' directory
 console.log('Server is running');
 const io = socket(server);
 
+
+//it works!
 // Socket.io Connection------------------
 io.on('connection',(socket)=>{
   console.log("New socket conntection---- " + socket.id)
