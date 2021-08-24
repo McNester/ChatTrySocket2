@@ -22,4 +22,19 @@ io.on('connection',(socket)=>{
     let roomName = {"roomName": roomStr}
     socket.broadcast.emit("newRoom",  roomName);
   })
+
+  socket.on("joinToRoomDetection",(roomNameStr,nameOfNewUserInRoom)=>{
+
+    socket.join(roomNameStr);
+
+    console.log(nameOfNewUserInRoom + " has joined the " + roomNameStr);
+
+
+       let  userName = {"userName": nameOfNewUserInRoom}
+
+       io.to(roomNameStr).emit('newUserInRoom', userName )
+
+  })
+
+
 })
