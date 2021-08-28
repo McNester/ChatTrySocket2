@@ -38,8 +38,6 @@ io.on('connection',(socket)=>{
 
   socket.on("leaveRoomDetection",(roomNameStr,nameOfUserOutOfRoom)=>{
 
-    socket.join(roomNameStr);
-
     console.log(nameOfUserOutOfRoom + " has left the " + roomNameStr);
 
 
@@ -47,6 +45,7 @@ io.on('connection',(socket)=>{
 
        io.to(roomNameStr).emit('newUserOutOfRoom', userName )
 
+        socket.leave(roomNameStr);
 
   })
 
