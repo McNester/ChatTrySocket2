@@ -36,6 +36,20 @@ io.on('connection',(socket)=>{
 
   })
 
+  socket.on("messageDetection",(roomNameStr,nameOfSender,messageStr,time)=>{
+
+
+
+    console.log(nameOfSender + " send " + messageStr+" in "+roomNameStr);
+
+
+       let  message = {"senderName": nameOfSender,"messageStr": messageStr,"time": time}
+       
+
+       io.to(roomNameStr).broadcast.emit('outerMessageReceived', message )
+
+  })
+
   socket.on("leaveRoomDetection",(roomNameStr,nameOfUserOutOfRoom)=>{
 
     console.log(nameOfUserOutOfRoom + " has left the " + roomNameStr);
