@@ -46,7 +46,8 @@ io.on('connection',(socket)=>{
        let  message = {"senderName": nameOfSender,"messageStr": messageStr,"time": time}
 
 
-       io.to(roomNameStr).emit('outerMessageReceived', message )
+       socket.to(roomNameStr).emit('outerMessageReceived', message )
+       
 
   })
 
