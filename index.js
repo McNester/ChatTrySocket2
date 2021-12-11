@@ -43,7 +43,8 @@ io.on('connection',(socket)=>{
     console.log(nameOfSender + " send " + messageStr+" in "+roomNameStr);
 
 
-       let  message = {"senderName": nameOfSender,"messageStr": messageStr,"time": time}
+       //let  message = {"senderName": nameOfSender,"messageStr": messageStr,"time": time}
+       let  message = {"senderName": nameOfSender}
 
 
        socket.to(roomNameStr).emit('outerMessageReceived', message )
